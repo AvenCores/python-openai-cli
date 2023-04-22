@@ -1,8 +1,5 @@
 from sys import platform
 from os import system
-import getpass
-
-user = getpass.getuser()
 
 
 if platform == "win32":
