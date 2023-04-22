@@ -15,7 +15,7 @@ def clear():
 		os.system("clear")
 
 clear()
-colors = ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta']
+colors = ['red', 'yellow', 'green', 'cyan', 'light_blue', 'magenta']
 color_index = 0
 bannercli ="""                                                   /$$                   /$$ /$$
                                                   |__/                  | $$|__/
@@ -85,19 +85,21 @@ def menu():
                     print(colored(bannercli[i], color), end="")
                 print(colored("\n\nAuthor: ", "red") + "@avencores")
                 print(colored("Telegram channel: ", "red") + "@hzfnews")
-                resp = input(colored("\nEnter your request: ", "yellow"))
-                try:
-                    response = openai.ChatCompletion.create(
-                    model="gpt-4",
-                    messages=[{"role": "user", "content": resp}])
-                    output = response["choices"][0]["message"]["content"]
-                    print(colored(f"\nResponse from ChatGPT 4.0: ", "green") + output)
-                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                    input()
-                except Exception as e:
-                    print(e)
-                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                    input()
+                print(colored("\nChatGPT Model: ", "light_blue") + "4.0")
+                resp = input(colored("\nEnter your request (leave blank to keep existing): ", "yellow"))
+                if resp:
+                    try:
+                        response = openai.ChatCompletion.create(
+                        model="gpt-4",
+                        messages=[{"role": "user", "content": resp}])
+                        output = response["choices"][0]["message"]["content"]
+                        print(colored(f"\nResponse from ChatGPT 4.0: ", "green") + output)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                    except Exception as e:
+                        print(e)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
             if choice == "2":
                 clear()
                 for i in range(len(bannercli)):
@@ -105,19 +107,21 @@ def menu():
                     print(colored(bannercli[i], color), end="")
                 print(colored("\n\nAuthor: ", "red") + "@avencores")
                 print(colored("Telegram channel: ", "red") + "@hzfnews")
-                resp = input(colored("\nEnter your request: ", "yellow"))
-                try:
-                    response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[{"role": "user", "content": resp}])
-                    output = response["choices"][0]["message"]["content"]
-                    print(colored(f"\nResponse from ChatGPT 3.5: ", "green") + output)
-                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                    input()
-                except Exception as e:
-                    print(e)
-                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                    input()
+                print(colored("\nChatGPT Model: ", "light_blue") + "3.5")
+                resp = input(colored("\nEnter your request (leave blank to keep existing): ", "yellow"))
+                if resp:
+                    try:
+                        response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[{"role": "user", "content": resp}])
+                        output = response["choices"][0]["message"]["content"]
+                        print(colored(f"\nResponse from ChatGPT 3.5: ", "green") + output)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                    except Exception as e:
+                        print(e)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
             else:
                 clear()
                 for i in range(len(bannercli)):
@@ -125,7 +129,7 @@ def menu():
                     print(colored(bannercli[i], color), end="")
                 print(colored("\n\nAuthor: ", "red") + "@avencores")
                 print(colored("Telegram channel: ", "red") + "@hzfnews")
-                print(colored("\nInvalid choice. Please try again.", "blue"))
+                print(colored("\nInvalid choice. Please try again.", "light_blue"))
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
         elif choice == "2":
@@ -135,20 +139,21 @@ def menu():
                 print(colored(bannercli[i], color), end="")
             print(colored("\n\nAuthor: ", "red") + "@avencores")
             print(colored("Telegram channel: ", "red") + "@hzfnews")
-            resp = input(colored("\nEnter your request: ", "yellow"))
-            try:
-                response = openai.Image.create(
-                    prompt=resp,
-                    n=1,
-                    size="1024x1024")
-                output = response['data'][0]['url']
-                print(colored(f"\nResponse from DALLE-2: ", "green") + output)
-                print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                input()
-            except Exception as e:
-                print(e)
-                print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                input()
+            resp = input(colored("\nEnter your request (leave blank to keep existing): ", "yellow"))
+            if resp:
+                try:
+                    response = openai.Image.create(
+                        prompt=resp,
+                        n=1,
+                        size="1024x1024")
+                    output = response['data'][0]['url']
+                    print(colored(f"\nResponse from DALLE-2: ", "green") + output)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+                except Exception as e:
+                    print(e)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
         elif choice == "3":
             clear()
             for i in range(len(bannercli)):
@@ -157,19 +162,20 @@ def menu():
             print(colored("\n\nAuthor: ", "red") + "@avencores")
             print(colored("Telegram channel: ", "red") + "@hzfnews")
             print(colored("\nFile uploads are currently limited to 25 MB and the following input file types are supported: mp3, mp4, mpeg, mpga, m4a, wav, and webm.", "green"))
-            resp = input(colored("\nEnter the full path to the file: ", "yellow"))
-            try:
-                fileaudio = open(f"{resp}", "rb")
-                response = openai.Audio.transcribe("whisper-1", fileaudio)
-                fileaudio.close()
-                output = response["text"]
-                print(colored(f"\nResponse from Whisper: ", "green") + output)
-                print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                input()
-            except Exception as e:
-                print(e)
-                print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                input()
+            resp = input(colored("\nEnter the full path to the file (leave blank to keep existing): ", "yellow"))
+            if resp:
+                try:
+                    fileaudio = open(f"{resp}", "rb")
+                    response = openai.Audio.transcribe("whisper-1", fileaudio)
+                    fileaudio.close()
+                    output = response["text"]
+                    print(colored(f"\nResponse from Whisper: ", "green") + output)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+                except Exception as e:
+                    print(e)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
         elif choice == "4":
             clear()
             for i in range(len(bannercli)):
@@ -192,7 +198,7 @@ def menu():
                 print(colored(bannercli[i], color), end="")
             print(colored("\n\nAuthor: ", "red") + "@avencores")
             print(colored("Telegram channel: ", "red") + "@hzfnews")
-            print(colored("\nRead this article: ", "blue") + "https://lmmsoft.github.io/openai_update_check_balance_api/")
+            print(colored("\nRead this article: ", "light_blue") + "https://lmmsoft.github.io/openai_update_check_balance_api/")
             session_key = input(colored("\nEnter your session-key: ", "yellow"))
             config['openai-key'] = {'session_key': session_key}
             with open('config.ini', 'w') as configfile:
@@ -215,7 +221,7 @@ def menu():
                         print(colored(bannercli[i], color), end="")
                     print(colored("\n\nAuthor: ", "red") + "@avencores")
                     print(colored("Telegram channel: ", "red") + "@hzfnews")
-                    print(colored("\nRead this article: ", "blue") + "https://lmmsoft.github.io/openai_update_check_balance_api/")
+                    print(colored("\nRead this article: ", "light_blue") + "https://lmmsoft.github.io/openai_update_check_balance_api/")
                     session_key = input(colored("\nEnter your session-key: ", "yellow"))
                     config['openai-key'] = {'session_key': session_key}
                     with open('config.ini', 'w') as configfile:
@@ -252,7 +258,7 @@ def menu():
                 print(colored(bannercli[i], color), end="")
             print(colored("\n\nAuthor: ", "red") + "@avencores")
             print(colored("Telegram channel: ", "red") + "@hzfnews")
-            print(colored("\nInvalid choice. Please try again.", "blue"))
+            print(colored("\nInvalid choice. Please try again.", "light_blue"))
             print(colored("\nPress ENTER to return to the main menu", "cyan"))
             input()
 
