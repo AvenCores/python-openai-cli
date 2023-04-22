@@ -56,13 +56,18 @@ def menu():
             print(colored(bannercli[i], color), end="")
         print(colored("\n\nAuthor: ", "red") + "@avencores")
         print(colored("Telegram channel: ", "red") + "@hzfnews")
-        print(colored("\n1) ", "cyan") + "ChatGPT 3.5")
+        print(colored("\n1) ", "cyan") + "ChatGPT")
         print(colored("2) ", "cyan") + "DALLE-2")
         print(colored("3) ", "cyan") + "Whisper")
         print(colored("\n4) ", "cyan") + "Change openai token")
         print(colored("5) ", "cyan") + "Change openai session key")
         print(colored("\n6) ", "cyan") + "Check token balance")
-        choice = input(colored("\nEnter your choice (1-6): ", "yellow"))
+        print(colored("\n0) ", "cyan") + "Exit")
+        choice = input(colored("\nEnter your choice (0-6): ", "yellow"))
+        if choice == "0":
+            clear()
+            print(colored("Bye!", "cyan"))
+            exit()
         if choice == "1":
             clear()
             for i in range(len(bannercli)):
@@ -70,17 +75,57 @@ def menu():
                 print(colored(bannercli[i], color), end="")
             print(colored("\n\nAuthor: ", "red") + "@avencores")
             print(colored("Telegram channel: ", "red") + "@hzfnews")
-            resp = input(colored("\nEnter your request: ", "yellow"))
-            try:
-                response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": resp}])
-                output = response["choices"][0]["message"]["content"]
-                print(colored(f"\nResponse from ChatGPT: ", "green") + output)
-                print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                input()
-            except Exception as e:
-                print(e)
+            print(colored("\n1) ", "cyan") + "ChatGPT 4.0")
+            print(colored("2) ", "cyan") + "ChatGPT 3.5")
+            choice = input(colored("\nEnter your choice (1-2): ", "yellow"))
+            if choice == "1":
+                clear()
+                for i in range(len(bannercli)):
+                    color = colors[i % len(colors)]
+                    print(colored(bannercli[i], color), end="")
+                print(colored("\n\nAuthor: ", "red") + "@avencores")
+                print(colored("Telegram channel: ", "red") + "@hzfnews")
+                resp = input(colored("\nEnter your request: ", "yellow"))
+                try:
+                    response = openai.ChatCompletion.create(
+                    model="gpt-4",
+                    messages=[{"role": "user", "content": resp}])
+                    output = response["choices"][0]["message"]["content"]
+                    print(colored(f"\nResponse from ChatGPT 4.0: ", "green") + output)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+                except Exception as e:
+                    print(e)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+            if choice == "2":
+                clear()
+                for i in range(len(bannercli)):
+                    color = colors[i % len(colors)]
+                    print(colored(bannercli[i], color), end="")
+                print(colored("\n\nAuthor: ", "red") + "@avencores")
+                print(colored("Telegram channel: ", "red") + "@hzfnews")
+                resp = input(colored("\nEnter your request: ", "yellow"))
+                try:
+                    response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[{"role": "user", "content": resp}])
+                    output = response["choices"][0]["message"]["content"]
+                    print(colored(f"\nResponse from ChatGPT 3.5: ", "green") + output)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+                except Exception as e:
+                    print(e)
+                    print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                    input()
+            else:
+                clear()
+                for i in range(len(bannercli)):
+                    color = colors[i % len(colors)]
+                    print(colored(bannercli[i], color), end="")
+                print(colored("\n\nAuthor: ", "red") + "@avencores")
+                print(colored("Telegram channel: ", "red") + "@hzfnews")
+                print(colored("\nInvalid choice. Please try again.", "blue"))
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
         elif choice == "2":
@@ -201,6 +246,14 @@ def menu():
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
         else:
-            print("Invalid choice. Please try again.\n")
+            clear()
+            for i in range(len(bannercli)):
+                color = colors[i % len(colors)]
+                print(colored(bannercli[i], color), end="")
+            print(colored("\n\nAuthor: ", "red") + "@avencores")
+            print(colored("Telegram channel: ", "red") + "@hzfnews")
+            print(colored("\nInvalid choice. Please try again.", "blue"))
+            print(colored("\nPress ENTER to return to the main menu", "cyan"))
+            input()
 
 menu()
