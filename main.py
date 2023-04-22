@@ -97,9 +97,16 @@ def menu():
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                     except Exception as e:
-                        print(e)
+                        clear()
+                        for i in range(len(bannercli)):
+                            color = colors[i % len(colors)]
+                            print(colored(bannercli[i], color), end="")
+                        print(colored("\n\nAuthor: ", "red") + "@avencores")
+                        print(colored("Telegram channel: ", "red") + "@hzfnews")
+                        print(colored("\nERROR: ", "yellow") + str(e))
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
+                        menu()
             if choice == "2":
                 clear()
                 for i in range(len(bannercli)):
@@ -119,9 +126,16 @@ def menu():
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                     except Exception as e:
-                        print(e)
+                        clear()
+                        for i in range(len(bannercli)):
+                            color = colors[i % len(colors)]
+                            print(colored(bannercli[i], color), end="")
+                        print(colored("\n\nAuthor: ", "red") + "@avencores")
+                        print(colored("Telegram channel: ", "red") + "@hzfnews")
+                        print(colored("\nERROR: ", "yellow") + str(e))
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
+                        menu()
             else:
                 clear()
                 for i in range(len(bannercli)):
@@ -151,9 +165,16 @@ def menu():
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                 except Exception as e:
-                    print(e)
+                    clear()
+                    for i in range(len(bannercli)):
+                        color = colors[i % len(colors)]
+                        print(colored(bannercli[i], color), end="")
+                    print(colored("\n\nAuthor: ", "red") + "@avencores")
+                    print(colored("Telegram channel: ", "red") + "@hzfnews")
+                    print(colored("\nERROR: ", "yellow") + str(e))
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
+                    menu()
         elif choice == "3":
             clear()
             for i in range(len(bannercli)):
@@ -173,9 +194,16 @@ def menu():
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                 except Exception as e:
-                    print(e)
+                    clear()
+                    for i in range(len(bannercli)):
+                        color = colors[i % len(colors)]
+                        print(colored(bannercli[i], color), end="")
+                    print(colored("\n\nAuthor: ", "red") + "@avencores")
+                    print(colored("Telegram channel: ", "red") + "@hzfnews")
+                    print(colored("\nERROR: ", "yellow") + str(e))
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
+                    menu()
         elif choice == "4":
             clear()
             for i in range(len(bannercli)):
@@ -248,9 +276,16 @@ def menu():
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
             except Exception as e:
-                print(e)
+                clear()
+                for i in range(len(bannercli)):
+                    color = colors[i % len(colors)]
+                    print(colored(bannercli[i], color), end="")
+                print(colored("\n\nAuthor: ", "red") + "@avencores")
+                print(colored("Telegram channel: ", "red") + "@hzfnews")
+                print(colored("\nERROR: ", "yellow") + str(e))
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
+                menu()
         else:
             clear()
             for i in range(len(bannercli)):
