@@ -90,7 +90,7 @@ def menu():
                     except Exception as e:
                         clear()
                         banner()
-                        print(colored("\nERROR: ", "yellow") + str(e))
+                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                         menu()
@@ -113,7 +113,7 @@ def menu():
                     except Exception as e:
                         clear()
                         banner()
-                        print(colored("\nERROR: ", "yellow") + str(e))
+                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                         menu()
@@ -140,7 +140,7 @@ def menu():
                 except Exception as e:
                     clear()
                     banner()
-                    print(colored("\nERROR: ", "yellow") + str(e))
+                    print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                     menu()
@@ -161,7 +161,7 @@ def menu():
                 except Exception as e:
                     clear()
                     banner()
-                    print(colored("\nERROR: ", "yellow") + str(e))
+                    print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                     menu()
@@ -224,7 +224,7 @@ def menu():
             except Exception as e:
                 clear()
                 banner()
-                print(colored("\nERROR: ", "yellow") + str(e))
+                print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
                 print(colored("\nPress ENTER to return to the main menu", "cyan"))
                 input()
                 menu()
