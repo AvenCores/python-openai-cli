@@ -72,7 +72,8 @@ def menu():
             banner()
             print(colored("\n[1] ", "cyan") + "ChatGPT 4.0")
             print(colored("[2] ", "cyan") + "ChatGPT 3.5")
-            choice = input(colored("\nEnter your choice (1-2) ", "yellow") + colored(">> ", "green"))
+            print(colored("[3] ", "cyan") + "ChatGPT 3.5 (16K)")
+            choice = input(colored("\nEnter your choice (1-3) ", "yellow") + colored(">> ", "green"))
             if choice == "1":
                 clear()
                 banner()
@@ -84,7 +85,7 @@ def menu():
                         model="gpt-4",
                         messages=[{"role": "user", "content": resp}])
                         output = response["choices"][0]["message"]["content"]
-                        print(colored(f"\nResponse from ChatGPT 4.0 ", "green") + colored(">> ", "green") + output)
+                        print(colored(f"\nResponse from ChatGPT 4.0 ", "magenta") + colored(">> ", "green") + output)
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                     except Exception as e:
@@ -107,7 +108,28 @@ def menu():
                         model="gpt-3.5-turbo",
                         messages=[{"role": "user", "content": resp}])
                         output = response["choices"][0]["message"]["content"]
-                        print(colored(f"\nResponse from ChatGPT 3.5 ", "green") + colored(">> ", "green") + output)
+                        print(colored(f"\nResponse from ChatGPT 3.5 ", "magenta") + colored(">> ", "green") + output)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                    except Exception as e:
+                        clear()
+                        banner()
+                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                        menu()
+            if choice == "3":
+                clear()
+                banner()
+                print(colored("\nChatGPT Model: ", "light_blue") + "3.5 (16K)")
+                resp = input(colored("\nEnter your request (leave blank to keep existing) ", "yellow") + colored(">> ", "green"))
+                if resp:
+                    try:
+                        response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo-16k",
+                        messages=[{"role": "user", "content": resp}])
+                        output = response["choices"][0]["message"]["content"]
+                        print(colored(f"\nResponse from ChatGPT 3.5 (16K) ", "magenta") + colored(">> ", "green") + output)
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                     except Exception as e:
@@ -134,7 +156,7 @@ def menu():
                         n=1,
                         size="1024x1024")
                     output = response['data'][0]['url']
-                    print(colored(f"\nResponse from DALLE-2 ", "green")  + colored(">> ", "green") + output)
+                    print(colored(f"\nResponse from DALLE-2 ", "magenta")  + colored(">> ", "green") + output)
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                 except Exception as e:
@@ -155,7 +177,7 @@ def menu():
                     response = openai.Audio.transcribe("whisper-1", fileaudio)
                     fileaudio.close()
                     output = response["text"]
-                    print(colored(f"\nResponse from Whisper ", "green")  + colored(">> ", "green") + output)
+                    print(colored(f"\nResponse from Whisper ", "magenta")  + colored(">> ", "green") + output)
                     print(colored("\nPress ENTER to return to the main menu", "cyan"))
                     input()
                 except Exception as e:
