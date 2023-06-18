@@ -70,11 +70,35 @@ def menu():
         if choice == "1":
             clear()
             banner()
-            print(colored("\n[1] ", "cyan") + "ChatGPT 4.0")
-            print(colored("[2] ", "cyan") + "ChatGPT 3.5")
+            print(colored("\n[1] ", "cyan") + "ChatGPT 4.0 (32K)")
+            print(colored("[2] ", "cyan") + "ChatGPT 4.0")
             print(colored("[3] ", "cyan") + "ChatGPT 3.5 (16K)")
-            choice = input(colored("\nEnter your choice (1-3) ", "yellow") + colored(">> ", "green"))
+            print(colored("[4] ", "cyan") + "ChatGPT 3.5")
+            choice = input(colored("\nEnter your choice (1-4) ", "yellow") + colored(">> ", "green"))
             if choice == "1":
+                clear()
+                banner()
+                print(colored("\nChatGPT Model: ", "light_blue") + "4.0 (32K)")
+                resp = input(colored("\nEnter your request (leave blank to keep existing) ", "yellow") + colored(">> ", "green"))
+                if resp:
+                    try:
+                        response = openai.ChatCompletion.create(
+                        model="gpt-4-32k",
+                        messages=[{"role": "user", "content": resp}])
+                        output = response["choices"][0]["message"]["content"]
+                        print(colored(f"\nResponse from ChatGPT 4.0 (32K) ", "magenta") + colored(">> ", "green") + output)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                    except Exception as e:
+                        clear()
+                        banner()
+                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                        menu()
+                else:
+                    menu()
+            if choice == "2":
                 clear()
                 banner()
                 print(colored("\nChatGPT Model: ", "light_blue") + "4.0")
@@ -97,27 +121,6 @@ def menu():
                         menu()
                 else:
                     menu()
-            if choice == "2":
-                clear()
-                banner()
-                print(colored("\nChatGPT Model: ", "light_blue") + "3.5")
-                resp = input(colored("\nEnter your request (leave blank to keep existing) ", "yellow") + colored(">> ", "green"))
-                if resp:
-                    try:
-                        response = openai.ChatCompletion.create(
-                        model="gpt-3.5-turbo",
-                        messages=[{"role": "user", "content": resp}])
-                        output = response["choices"][0]["message"]["content"]
-                        print(colored(f"\nResponse from ChatGPT 3.5 ", "magenta") + colored(">> ", "green") + output)
-                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                        input()
-                    except Exception as e:
-                        clear()
-                        banner()
-                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
-                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
-                        input()
-                        menu()
             if choice == "3":
                 clear()
                 banner()
@@ -139,6 +142,31 @@ def menu():
                         print(colored("\nPress ENTER to return to the main menu", "cyan"))
                         input()
                         menu()
+                else:
+                    menu()
+            if choice == "4":
+                clear()
+                banner()
+                print(colored("\nChatGPT Model: ", "light_blue") + "3.5")
+                resp = input(colored("\nEnter your request (leave blank to keep existing) ", "yellow") + colored(">> ", "green"))
+                if resp:
+                    try:
+                        response = openai.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[{"role": "user", "content": resp}])
+                        output = response["choices"][0]["message"]["content"]
+                        print(colored(f"\nResponse from ChatGPT 3.5 ", "magenta") + colored(">> ", "green") + output)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                    except Exception as e:
+                        clear()
+                        banner()
+                        print(colored("\nERROR ", "yellow") + colored(">> ", "green")) + str(e)
+                        print(colored("\nPress ENTER to return to the main menu", "cyan"))
+                        input()
+                        menu()
+                else:
+                    menu()
             else:
                 clear()
                 banner()
